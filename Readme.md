@@ -10,12 +10,12 @@ dotnet --info
 dotnet new list
 ```
 
-## Create project, build, run
+## Create project, build and run
 ```powershell
 dotnet new web -n GameStore.Api
-
-dotnet dev-certs https --trust
 dotnet build
+dotnet dev-certs https --trust
+dotnet run
 dotnet run --launch-profile https
 ```
 

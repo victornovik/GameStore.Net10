@@ -1,0 +1,5 @@
+﻿@GameStore.Api_HostAddress = http://localhost:5161
+
+GET {{GameStore.Api_HostAddress}}/
+
+###
