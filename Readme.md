@@ -36,3 +36,15 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet ef migrations add InitialCreate --output-dir Data\Migrations
 dotnet ef database update
 ```
+## Pass the connection string via an environment variable
+```powershell
+$env:ConnectionStrings__GameStore="Data Source=GameStore.PROD.db"
+
+# Show all environment variables
+Get-ChildItem Env:
+
+# Run application from the same Powershell terminal
+dotnet run
+```
+
+ 
