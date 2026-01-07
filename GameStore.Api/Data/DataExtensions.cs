@@ -17,6 +17,15 @@ public static class DataExtensions
     {
         var connString = builder.Configuration.GetConnectionString("GameStore");
 
+        // DbContext has a Scoped service lifetime because:
+        // 1. It ensures that a new instance of DbContext is created per HTTP request
+        // 2. DB connections are a limited and expensive resource
+        // 3. DbContext is thread-unsafe. Scoped avoids concurrency issues
+        // 4. Makes it easier to manage transactions and ensure data consistency
+        // 5. Reusing a DbContext instance can lead to increased memory usage as it tracks changes of entities over its lifetime
+        //
+        // builder.Services.AddSqlite actually calls builder.Services.AddScoped<GameStoreContext>
+
         builder.Services.AddSqlite<GameStoreContext>(
             connString,
             // Seeding lambda runs after EnsureCreated() is called or after migrations are applied.

@@ -7,7 +7,7 @@ GET {{HostAddress}}
 GET {{HostAddress}}/games
 
 ###
-GET {{HostAddress}}/games/4
+GET {{HostAddress}}/games/2
 
 ###
 POST {{HostAddress}}/games
@@ -15,9 +15,31 @@ Content-Type: application/json
 
 {
     "Name": "Boulder Dash",
-    "Genre": "Platformer",
+    "GenreId": 3,
     "Price": 59.99,
     "ReleaseDate": "2023-10-20"
+}
+
+###
+POST {{HostAddress}}/games
+Content-Type: application/json
+
+{
+    "Name": "Street Fighter II",
+    "GenreId": 1,
+    "Price": 19.99,
+    "ReleaseDate": "1992-07-15"
+}
+
+###
+POST {{HostAddress}}/games
+Content-Type: application/json
+
+{
+    "Name": "Astro Bot",
+    "GenreId": 3,
+    "Price": 59.99,
+    "ReleaseDate": "2024-09-06"
 }
 
 ###
@@ -26,8 +48,8 @@ Content-Type: application/json
 
 {
     "name": "Street Fighter II Turbo",
-    "genre": "Fighting",
-    "price": 22.0,
+    "GenreId": 1,
+    "price": 25.5,
     "releaseDate": "1992-07-15"
 }
 
