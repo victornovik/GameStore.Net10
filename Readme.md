@@ -19,20 +19,20 @@ dotnet run
 dotnet run --launch-profile https
 ```
 
-## EF dependencies
+## Add EFCore with Sqlite provider
 ```powershell
 dotnet tool install --global dotnet-ef
+# Commands:
+#  database    Commands to manage the database.
+#  dbcontext   Commands to manage DbContext types.
+#  migrations  Commands to manage migrations.
+
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
 
-## Create an initial migration
+## Create an initial migration and apply it to the database
 ```powershell
-dotnet ef migrations add initial
-dotnet ef migrations add bids
-```
-
-## Apply the initial migration to the database
-```powershell
+dotnet ef migrations add InitialCreate --output-dir Data\Migrations
 dotnet ef database update
 ```
