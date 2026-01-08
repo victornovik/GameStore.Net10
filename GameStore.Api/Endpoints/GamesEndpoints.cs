@@ -26,8 +26,7 @@ public static class GamesEndpoints
         {
             var game = await dbContext.Games.FindAsync(id);
 
-            return game is null ? Results.NotFound() : Results.Ok(new GameDetailsDto(game.Id, game.Name, game.GenreId, game.Price, game.ReleaseDate)
-            );
+            return game is null ? Results.NotFound() : Results.Ok(new GameDetailsDto(game.Id, game.Name, game.GenreId, game.Price, game.ReleaseDate));
         }).WithName(GetGameEndpointName);
 
         group.MapPost("/", async (CreateGameDto g, GameStoreContext dbContext) =>
