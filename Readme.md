@@ -5,6 +5,12 @@
 dotnet --info
 ```
 
+## Upgrade .NET version
+```powershell
+dotnet tool install -g upgrade-assistant
+upgrade-assistant upgrade GameStore.Api.csproj --target-tfm net10.0
+```
+
 ## Display all available project templates
 ```powershell
 dotnet new list
@@ -36,6 +42,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet ef migrations add InitialCreate --output-dir Data\Migrations
 dotnet ef database update
 ```
+
 ## Pass the connection string via an environment variable
 ```powershell
 $env:ConnectionStrings__GameStore="Data Source=GameStore.PROD.db"
@@ -45,6 +52,4 @@ Get-ChildItem Env:
 
 # Run application from the same Powershell terminal
 dotnet run
-```
-
- 
+``` 
