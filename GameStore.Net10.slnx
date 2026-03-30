@@ -3,4 +3,5 @@
     <File Path="Readme.md" />
   </Folder>
   <Project Path="GameStore.Api/GameStore.Api.csproj" />
+  <Project Path="GameStore.Worker/GameStore.Worker.csproj" Id="bd899459-ec33-4f7e-b61a-1d21b4d684b6" />
 </Solution>

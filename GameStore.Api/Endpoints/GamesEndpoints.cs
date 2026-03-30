@@ -15,11 +15,22 @@ public static class GamesEndpoints
 
         var group = app.MapGroup("/games");
 
-        group.MapGet("/", async (GameStoreContext dbContext) => await dbContext.Games
-            .Include(game => game.Genre)
-            .Select(game => new GameSummaryDto(game.Id, game.Name, game.Genre!.Name, game.Price, game.ReleaseDate))
-            .AsNoTracking()
-            .ToListAsync()
+        group.MapGet("/", async (GameStoreContext dbContext) =>
+            {
+                // Introducing random delays
+                var chance = Random.Shared.NextDouble();
+                if (chance < 0.2)
+                    await Task.Delay(5000);
+                else if (chance < 0.4)
+                    throw new Exception("Something went wrong");
+
+                return await dbContext.Games
+                    .Include(game => game.Genre)
+                    .Select(game =>
+                        new GameSummaryDto(game.Id, game.Name, game.Genre!.Name, game.Price, game.ReleaseDate))
+                    .AsNoTracking()
+                    .ToListAsync();
+            }
         );
 
         group.MapGet("/{id}", async (int id, GameStoreContext dbContext) =>
@@ -31,13 +42,13 @@ public static class GamesEndpoints
 
         group.MapPost("/", async (CreateGameDto g, GameStoreContext dbContext) =>
         {
-            Game game = new () { Name=g.Name, GenreId=g.GenreId, Price=g.Price, ReleaseDate = g.ReleaseDate };
+            Game game = new() { Name = g.Name, GenreId = g.GenreId, Price = g.Price, ReleaseDate = g.ReleaseDate };
             dbContext.Games.Add(game);
             await dbContext.SaveChangesAsync();
 
             return Results.CreatedAtRoute(
-                GetGameEndpointName, 
-                routeValues: new { id = game.Id }, 
+                GetGameEndpointName,
+                routeValues: new { id = game.Id },
                 value: new GameDetailsDto(game.Id, game.Name, game.GenreId, game.Price, game.ReleaseDate));
         });
 

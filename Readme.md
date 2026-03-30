@@ -53,3 +53,12 @@ Get-ChildItem Env:
 # Run application from the same Powershell terminal
 dotnet run
 ``` 
+
+## Add standard MS circuit-breaker instead of Polly
+```powershell
+dotnet add package Microsoft.Extensions.Http.Resilience
+```
+
+##  Useful links
+- [Resilience strategies](https://www.pollydocs.org/strategies/index.html)
+- [Build resilient HTTP apps](https://learn.microsoft.com/en-us/dotnet/core/resilience/http-resilience)
