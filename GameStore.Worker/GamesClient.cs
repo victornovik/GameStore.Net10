@@ -7,8 +7,8 @@ public class GamesClient(HttpClient httpClient)
     public async Task<IReadOnlyCollection<GameDto>> GetGamesAsync()
     {
         var items = await httpClient.GetFromJsonAsync<IReadOnlyCollection<GameDto>>("/games");
-        return items;
+        return items ?? [];
     }
 
-    public string ApiAddress => httpClient.BaseAddress.ToString();
+    public string ApiAddress => httpClient.BaseAddress?.ToString() ?? string.Empty;
 }
